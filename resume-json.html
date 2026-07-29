@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<title>resume.json — Bill Dwyer</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:      #1e1e1e;
+  --panel:   #252526;
+  --border:  #3a3a3a;
+  --text:    #d4d4d4;
+  --muted:   #6a7178;
+  --key:     #9cdcfe;
+  --idx:     #6a9955;
+  --string:  #ce9178;
+  --number:  #b5cea8;
+  --literal: #569cd6;
+  --punct:   #808080;
+  --guide:   #333;
+  --accent:  #4fc1ff;
+  --toolbar-btn: #333;
+  --toolbar-btn-hover: #3d3d3d;
+  --toolbar-btn-border: #555;
+  --hover-tint: rgba(255,255,255,.04);
+  --card-shadow: rgba(0,0,0,.5);
+  --error: #f48771;
+  --shell-bg: #141414;
+}
+
+@media (prefers-color-scheme: light){
+  :root{
+    --bg:      #ffffff;
+    --panel:   #f3f3f3;
+    --border:  #d4d4d4;
+    --text:    #1e1e1e;
+    --muted:   #6e6e6e;
+    --key:     #0451a5;
+    --idx:     #098658;
+    --string:  #a31515;
+    --number:  #098658;
+    --literal: #0000ff;
+    --punct:   #999999;
+    --guide:   #d4d4d4;
+    --accent:  #0451a5;
+    --toolbar-btn: #e5e5e5;
+    --toolbar-btn-hover: #dcdcdc;
+    --toolbar-btn-border: #b8b8b8;
+    --hover-tint: rgba(0,0,0,.035);
+    --card-shadow: rgba(0,0,0,.15);
+    --error: #cd3131;
+    --shell-bg: #e9e9e9;
+  }
+}
+
+html{background:var(--shell-bg)}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'SF Mono',Menlo,Consolas,'Courier New',monospace;
+  font-size:13.5px;
+  line-height:1.6;
+  min-height:100vh;
+}
+
+.wrap{
+  max-width:880px;
+  margin:0 auto;
+  padding:56px 20px 90px;
+}
+
+.editor{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:8px;
+  overflow:hidden;
+  box-shadow:0 20px 60px var(--card-shadow);
+}
+
+.toolbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:10px 16px;
+  border-bottom:1px solid var(--border);
+  flex-wrap:wrap;
+}
+.toolbar-actions{ display:flex; gap:6px; flex-wrap:wrap; }
+.toolbar button{
+  font:inherit;
+  font-size:12px;
+  color:var(--text);
+  background:var(--toolbar-btn);
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:5px 10px;
+  cursor:pointer;
+}
+.toolbar button:hover{ background:var(--toolbar-btn-hover); border-color:var(--toolbar-btn-border); }
+.toolbar a.raw-link{
+  font-size:12px;
+  color:var(--muted);
+  text-decoration:none;
+  border-bottom:1px solid transparent;
+}
+.toolbar a.raw-link:hover{ color:var(--accent); border-color:var(--accent); }
+
+.tree-scroll{
+  padding:18px 16px 22px;
+  overflow-x:auto;
+}
+
+ul.json-tree{
+  list-style:none;
+}
+ul.json-tree.root{ padding-left:0; }
+ul.children{
+  list-style:none;
+  padding-left:20px;
+  border-left:1px solid var(--guide);
+  margin-left:5px;
+}
+
+.node.collapsed > .children,
+.node.collapsed > .line-close{ display:none; }
+.node:not(.collapsed) > .line .inline-close{ display:none; }
+.node.collapsed > .line .inline-close{ display:inline; }
+.node:not(.collapsed) > .line .summary{ display:none; }
+.node.collapsed > .line .summary{ display:inline; }
+
+.line, .line-close{
+  white-space:pre;
+  padding:1px 4px;
+  border-radius:3px;
+}
+.line:hover{ background:var(--hover-tint); }
+
+.toggle{
+  display:inline-block;
+  width:14px;
+  text-align:center;
+  color:var(--muted);
+  cursor:pointer;
+  user-select:none;
+}
+.toggle.spacer{ cursor:default; }
+.toggle:hover:not(.spacer){ color:var(--accent); }
+
+.key{ color:var(--key); }
+.idx{ color:var(--idx); }
+.string{ color:var(--string); }
+.number{ color:var(--number); }
+.literal{ color:var(--literal); }
+.punct{ color:var(--punct); }
+.summary{ color:var(--muted); font-style:italic; }
+.comma{ color:var(--punct); }
+
+.status{
+  margin-top:14px;
+  color:var(--muted);
+  font-size:12px;
+  text-align:center;
+}
+
+.error-box{
+  color:var(--error);
+  padding:20px 16px;
+}
+.error-box a{ color:var(--accent); }
+
+footer.page-footer{
+  margin-top:22px;
+  text-align:center;
+  font-size:12px;
+  color:var(--muted);
+}
+footer.page-footer a{ color:var(--muted); }
+footer.page-footer a:hover{ color:var(--accent); }
+</style>
+<style>
+.ide-tabbar{position:sticky;top:0;z-index:99999;display:flex;align-items:stretch;background:#2d2d2d;border-bottom:1px solid #3a3a3a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+.ide-tabbar .dots{flex-shrink:0;display:flex;align-items:center;gap:6px;padding:0 14px}
+.ide-tabbar .dots span{width:10px;height:10px;border-radius:50%;display:inline-block}
+.ide-tabbar .dots .r{background:#ff5f56}
+.ide-tabbar .dots .y{background:#ffbd2e}
+.ide-tabbar .dots .g{background:#27c93f}
+.ide-tabbar .tabs{display:flex;overflow-x:auto;scrollbar-width:none;flex:1}
+.ide-tabbar .tabs::-webkit-scrollbar{display:none}
+.ide-tabbar .tab{flex-shrink:0;display:flex;align-items:center;gap:7px;padding:10px 16px;font-size:12.5px;color:#8a8a8a;text-decoration:none;white-space:nowrap;border-right:1px solid #3a3a3a;border-top:2px solid transparent;transition:background .15s,color .15s}
+.ide-tabbar .tab:hover{background:#333;color:#ddd}
+.ide-tabbar .tab.active{background:#1e1e1e;color:#fff}
+.ide-tabbar .tab .file-icon{font-weight:700;font-size:12px;display:inline-flex;align-items:center}
+.ide-tabbar .tab .file-icon svg{display:block}
+.ide-tabbar .tab .tab-close{margin-left:2px;opacity:0;color:#888;font-size:13px;transition:opacity .15s}
+.ide-tabbar .tab:hover .tab-close{opacity:1}
+.ide-tabbar .tab.type-basic .file-icon{color:#e37933}
+.ide-tabbar .tab.type-basic.active{border-top-color:#e37933}
+.ide-tabbar .tab.type-playstore .file-icon{color:#01875f}
+.ide-tabbar .tab.type-playstore.active{border-top-color:#01875f}
+.ide-tabbar .tab.type-json .file-icon{color:#e8c547}
+.ide-tabbar .tab.type-json.active{border-top-color:#e8c547}
+.ide-tabbar .tab.type-md .file-icon{color:#519aba}
+.ide-tabbar .tab.type-md.active{border-top-color:#519aba}
+@media print{.ide-tabbar{display:none}}
+@media (max-width:600px){.ide-tabbar .tab{padding:9px 12px;font-size:12px}}
+</style>
+</head>
+<body>
+<div class="ide-tabbar">
+  <div class="dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+  <div class="tabs">
+    <a href="index.html" class="tab type-basic"><span class="file-icon">&lt;/&gt;</span>index.html<span class="tab-close">&times;</span></a>
+    <a href="resume-markdown.html" class="tab type-md"><span class="file-icon">M&darr;</span>resume.md<span class="tab-close">&times;</span></a>
+    <a href="resume-json.html" class="tab type-json active"><span class="file-icon">{ }</span>resume.json<span class="tab-close">&times;</span></a>
+    <a href="resume-android.html" class="tab type-playstore"><span class="file-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zM20.5 8c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zM15.53 2.16l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C13.85 1.23 12.95 1 12 1c-.96 0-1.86.23-2.66.63L7.85.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31C6.97 3.26 6 5.01 6 7h12c0-1.99-.97-3.75-2.47-4.84zM10 5H9V4h1v1zm5 0h-1V4h1v1z"/></svg></span>resume-android.apk<span class="tab-close">&times;</span></a>
+  </div>
+</div>
+<script>
+(function(){
+  var tabs=document.querySelector('.ide-tabbar .tabs');
+  var active=document.querySelector('.ide-tabbar .tab.active');
+  if(tabs && active){
+    var tabsRect=tabs.getBoundingClientRect();
+    var activeRect=active.getBoundingClientRect();
+    tabs.scrollLeft+=activeRect.left-tabsRect.left;
+  }
+})();
+</script>
+<div class="wrap">
+  <div class="editor">
+    <div class="toolbar">
+      <div class="toolbar-actions">
+        <button id="expandAll" type="button">Expand all</button>
+        <button id="collapseAll" type="button">Collapse all</button>
+      </div>
+      <a class="raw-link" href="resume.json">view raw →</a>
+    </div>
+    <div class="tree-scroll">
+      <ul class="json-tree root" id="tree" aria-label="resume.json, interactive"></ul>
+    </div>
+  </div>
+  <div class="status" id="status"></div>
+
+</div>
+
+<script>
+(function(){
+  var treeRoot = document.getElementById('tree');
+  var statusEl = document.getElementById('status');
+
+  function isExpandable(v){
+    return v !== null && typeof v === 'object';
+  }
+
+  function valueSpan(v){
+    var s = document.createElement('span');
+    if (v === null){
+      s.className = 'literal';
+      s.textContent = 'null';
+    } else {
+      switch (typeof v){
+        case 'string':
+          s.className = 'string';
+          s.textContent = JSON.stringify(v);
+          break;
+        case 'number':
+          s.className = 'number';
+          s.textContent = String(v);
+          break;
+        case 'boolean':
+          s.className = 'literal';
+          s.textContent = String(v);
+          break;
+        default:
+          s.textContent = String(v);
+      }
+    }
+    return s;
+  }
+
+  function keyLabel(key, isArrayParent){
+    var s = document.createElement('span');
+    if (isArrayParent){
+      s.className = 'idx';
+      s.textContent = key;
+    } else {
+      s.className = 'key';
+      s.textContent = JSON.stringify(key);
+    }
+    return s;
+  }
+
+  function buildNode(value, key, isArrayParent, isLast){
+    var li = document.createElement('li');
+    li.className = 'node';
+
+    var line = document.createElement('div');
+    line.className = 'line';
+
+    if (key !== null){
+      var toggleSpacer;
+      // key + colon appended after the toggle for expandable nodes,
+      // handled below for primitives directly here
+    }
+
+    if (isExpandable(value)){
+      var isArray = Array.isArray(value);
+      var entries = isArray
+        ? value.map(function(v, i){ return [i, v]; })
+        : Object.keys(value).map(function(k){ return [k, value[k]]; });
+
+      var toggle = document.createElement('span');
+      toggle.className = 'toggle';
+      toggle.textContent = '▾';
+      toggle.setAttribute('role', 'button');
+      toggle.setAttribute('aria-expanded', 'true');
+      line.appendChild(toggle);
+
+      if (key !== null){
+        line.appendChild(keyLabel(key, isArrayParent));
+        var colon = document.createElement('span');
+        colon.className = 'punct';
+        colon.textContent = ': ';
+        line.appendChild(colon);
+      }
+
+      var openBracket = document.createElement('span');
+      openBracket.className = 'punct';
+      openBracket.textContent = isArray ? '[' : '{';
+      line.appendChild(openBracket);
+
+      var summary = document.createElement('span');
+      summary.className = 'summary';
+      summary.textContent = ' ' + entries.length + (isArray ? (entries.length === 1 ? ' item' : ' items') : (entries.length === 1 ? ' key' : ' keys')) + ' ';
+      line.appendChild(summary);
+
+      var inlineClose = document.createElement('span');
+      inlineClose.className = 'inline-close';
+      var inlineBracket = document.createElement('span');
+      inlineBracket.className = 'punct';
+      inlineBracket.textContent = isArray ? ']' : '}';
+      inlineClose.appendChild(inlineBracket);
+      if (!isLast){
+        var inlineComma = document.createElement('span');
+        inlineComma.className = 'comma';
+        inlineComma.textContent = ',';
+        inlineClose.appendChild(inlineComma);
+      }
+      line.appendChild(inlineClose);
+
+      var children = document.createElement('ul');
+      children.className = 'children';
+      entries.forEach(function(entry, idx){
+        children.appendChild(buildNode(entry[1], entry[0], isArray, idx === entries.length - 1));
+      });
+
+      var lineClose = document.createElement('div');
+      lineClose.className = 'line-close';
+      var closeBracket = document.createElement('span');
+      closeBracket.className = 'punct';
+      closeBracket.textContent = isArray ? ']' : '}';
+      lineClose.appendChild(closeBracket);
+      if (!isLast){
+        var closeComma = document.createElement('span');
+        closeComma.className = 'comma';
+        closeComma.textContent = ',';
+        lineClose.appendChild(closeComma);
+      }
+
+      li.appendChild(line);
+      li.appendChild(children);
+      li.appendChild(lineClose);
+
+      toggle.addEventListener('click', function(){
+        var collapsed = li.classList.toggle('collapsed');
+        toggle.textContent = collapsed ? '▸' : '▾';
+        toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+      });
+    } else {
+      var spacer = document.createElement('span');
+      spacer.className = 'toggle spacer';
+      line.appendChild(spacer);
+
+      if (key !== null){
+        line.appendChild(keyLabel(key, isArrayParent));
+        var colon2 = document.createElement('span');
+        colon2.className = 'punct';
+        colon2.textContent = ': ';
+        line.appendChild(colon2);
+      }
+
+      line.appendChild(valueSpan(value));
+
+      if (!isLast){
+        var comma = document.createElement('span');
+        comma.className = 'comma';
+        comma.textContent = ',';
+        line.appendChild(comma);
+      }
+
+      li.appendChild(line);
+    }
+
+    return li;
+  }
+
+  function setAllCollapsed(collapsed){
+    var rootNode = treeRoot.querySelector(':scope > .node');
+    treeRoot.querySelectorAll('.node').forEach(function(li){
+      if (collapsed && li === rootNode) return; // keep root open so top-level keys stay visible
+      var toggle = li.querySelector(':scope > .line > .toggle:not(.spacer)');
+      if (!toggle) return;
+      li.classList.toggle('collapsed', collapsed);
+      toggle.textContent = collapsed ? '▸' : '▾';
+      toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+    });
+  }
+
+  document.getElementById('expandAll').addEventListener('click', function(){ setAllCollapsed(false); });
+  document.getElementById('collapseAll').addEventListener('click', function(){ setAllCollapsed(true); });
+
+  fetch('resume.json')
+    .then(function(res){
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
+    })
+    .then(function(data){
+      treeRoot.appendChild(buildNode(data, null, false, true));
+      var keyCount = Object.keys(data).length;
+      statusEl.textContent = keyCount + ' top-level keys · click ▾ to collapse a branch';
+    })
+    .catch(function(err){
+      treeRoot.parentNode.innerHTML = '<div class="error-box">Couldn\'t load resume.json: ' + err.message + '<br>Try the <a href="resume.json">raw file</a> instead.</div>';
+    });
+})();
+</script>
+</body>
+</html>

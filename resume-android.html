@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<title>Bill Dwyer: Senior Android Engineer - Apps on Google Play</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#fff;
+  --surface:#f8f9fa;
+  --text:#202124;
+  --text2:#5f6368;
+  --text3:#80868b;
+  --divider:#e8eaed;
+  --green:#01875f;
+  --blue:#01875f;
+  --link:#1a73e8;
+  --chip-bg:#e8f0fe;
+  --chip-text:#1967d2;
+  --star:#01875f;
+}
+
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#202124;
+    --surface:#292a2d;
+    --text:#e8eaed;
+    --text2:#9aa0a6;
+    --text3:#80868b;
+    --divider:#3c4043;
+    --green:#1db893;
+    --blue:#1db893;
+    --link:#8ab4f8;
+    --chip-bg:#2a3b55;
+    --chip-text:#a8c7fa;
+    --star:#1db893;
+  }
+}
+
+/* Screenshots are static captures — hold a fixed light "device screen"
+   look regardless of the page theme, like real Play Store screenshots. */
+.shot{
+  --text:#202124;
+  --text2:#5f6368;
+  --text3:#80868b;
+  --surface:#f8f9fa;
+  --divider:#e8eaed;
+  --link:#1a73e8;
+  --green:#01875f;
+  --star:#01875f;
+}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Roboto',Arial,sans-serif;
+  font-weight:400;
+  font-size:14px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+.topbar{
+  border-bottom:1px solid var(--divider);
+  padding:14px 24px;
+}
+.topbar a{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:var(--text2);
+  text-decoration:none;
+  font-size:13px;
+  font-weight:500;
+  transition:color .15s;
+}
+.topbar a:hover{color:var(--link)}
+.topbar svg{width:18px;height:18px}
+
+.page{max-width:960px;margin:0 auto;padding:32px 24px 80px}
+
+/* ── App header ───────────────────────────────────────── */
+.app-header{
+  display:flex;
+  gap:24px;
+  margin-bottom:28px;
+}
+.icon{
+  flex-shrink:0;
+  width:112px;height:112px;
+  border-radius:24px;
+  background:linear-gradient(135deg,#1a73e8 0%,#01875f 60%,#34a853 100%);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Roboto',sans-serif;
+  font-weight:700;
+  font-size:44px;
+  color:#fff;
+  box-shadow:0 1px 3px rgba(0,0,0,.15);
+  position:relative;
+  overflow:hidden;
+}
+.icon::after{
+  content:'🏍️';
+  position:absolute;
+  bottom:6px; right:8px;
+  font-size:22px;
+  filter:drop-shadow(0 1px 1px rgba(0,0,0,.3));
+}
+.app-meta{flex:1;min-width:0}
+.app-title{
+  font-size:26px;
+  font-weight:400;
+  letter-spacing:-0.2px;
+  margin-bottom:4px;
+}
+.app-dev{
+  color:var(--link);
+  font-size:14px;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+}
+.app-dev:hover{text-decoration:underline}
+.verified{
+  width:16px;height:16px;
+  fill:var(--link);
+}
+.stats-row{
+  display:flex;
+  gap:0;
+  margin-top:14px;
+  max-width:420px;
+}
+.stat{
+  flex:1;
+  padding:0 16px;
+  border-right:1px solid var(--divider);
+  text-align:center;
+}
+.stat:first-child{padding-left:0;text-align:left}
+.stat:last-child{border-right:none}
+.stat-value{
+  font-size:14px;
+  font-weight:500;
+  color:var(--text);
+  display:flex;
+  align-items:center;
+  gap:3px;
+  justify-content:center;
+}
+.stat:first-child .stat-value{justify-content:flex-start}
+.stat-value svg{width:14px;height:14px;fill:var(--star)}
+.stat-label{
+  font-size:11px;
+  color:var(--text3);
+  margin-top:2px;
+}
+
+/* ── Tags ─────────────────────────────────────────────── */
+.tags{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:20px 0 24px;
+}
+.tag{
+  background:var(--chip-bg);
+  color:var(--chip-text);
+  font-size:12px;
+  font-weight:500;
+  padding:6px 14px;
+  border-radius:8px;
+}
+
+/* ── Install row ──────────────────────────────────────── */
+.install-row{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:36px;
+}
+.btn-install{
+  background:var(--green);
+  color:#fff;
+  border:none;
+  font-family:inherit;
+  font-size:14px;
+  font-weight:500;
+  letter-spacing:.3px;
+  padding:10px 28px;
+  border-radius:999px;
+  cursor:pointer;
+  transition:background .15s, box-shadow .15s;
+}
+.btn-install:hover{filter:brightness(0.88); box-shadow:0 1px 4px rgba(0,0,0,.25)}
+.install-note{font-size:12px;color:var(--text3)}
+
+hr{border:none;border-top:1px solid var(--divider);margin:36px 0}
+
+/* ── Section heading ──────────────────────────────────── */
+h2{font-size:16px;font-weight:500;margin-bottom:14px}
+.section-sub{font-size:12px;color:var(--text3);margin-top:-8px;margin-bottom:16px}
+
+/* ── Screenshots ──────────────────────────────────────── */
+.shots{
+  display:flex;
+  gap:12px;
+  overflow-x:auto;
+  padding-bottom:8px;
+  margin-bottom:36px;
+  scrollbar-width:thin;
+}
+.shot{
+  flex:0 0 200px;
+  height:360px;
+  border-radius:14px;
+  overflow:hidden;
+  position:relative;
+  border:1px solid var(--divider);
+  background:#fff;
+  display:flex;
+  flex-direction:column;
+}
+.shot-bar{
+  height:38px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 14px;
+  font-size:11px;
+  font-weight:700;
+  color:#fff;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+}
+.shot-body{flex:1;padding:16px;display:flex;flex-direction:column;gap:10px}
+.shot-1 .shot-bar{background:#0064d2}
+.shot-2 .shot-bar{background:#01875f}
+.shot-3 .shot-bar{background:#3a3a3a}
+.shot-4 .shot-bar{background:#7c3aed}
+.shot-5 .shot-bar{background:#1a73e8}
+.shot-6 .shot-bar{background:#ea4335}
+.shot-7 .shot-bar{background:#f9ab00}
+.shot-8 .shot-bar{background:#5f6368}
+.shot-9 .shot-bar{background:#8e24aa}
+.shot-10 .shot-bar{background:#00838f}
+.shot-11 .shot-bar{background:#6d4c41}
+.shot-12 .shot-bar{background:#37474f}
+
+.shot-headline{font-size:15px;font-weight:700;line-height:1.25;color:var(--text)}
+.shot-sub{font-size:11px;color:var(--text2)}
+.bar{height:8px;border-radius:4px;background:var(--divider);overflow:hidden}
+.bar > span{display:block;height:100%;border-radius:4px}
+.metric{display:flex;justify-content:space-between;align-items:baseline;font-size:11px;color:var(--text2)}
+.metric b{font-size:18px;color:var(--text);font-weight:700}
+.chip-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto}
+.mini-chip{font-size:10px;background:var(--surface);border:1px solid var(--divider);border-radius:6px;padding:3px 7px;color:var(--text2)}
+.route-line{flex:1;border-left:2px dashed #999;margin:6px 0 6px 8px;padding-left:14px;display:flex;flex-direction:column;gap:18px;position:relative}
+.route-stop{font-size:12px;position:relative}
+.route-stop::before{content:'';position:absolute;left:-19px;top:4px;width:8px;height:8px;border-radius:50%;background:#3a3a3a}
+.route-stop b{display:block;font-size:13px}
+.skill-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-top:auto}
+
+/* ── About ────────────────────────────────────────────── */
+.about p{color:var(--text);max-width:680px;margin-bottom:8px}
+.read-more{color:var(--link);font-size:13px;font-weight:500;text-decoration:none;cursor:pointer;background:none;border:none;font-family:inherit;padding:0}
+.read-more:hover{text-decoration:underline}
+.about-extra{display:none;max-width:680px}
+.about-extra.open{display:block}
+
+/* ── What's new ───────────────────────────────────────── */
+.whats-new ul{list-style:none;max-width:680px}
+.whats-new li{
+  position:relative;
+  padding-left:18px;
+  margin-bottom:8px;
+  color:var(--text);
+}
+.whats-new li::before{
+  content:'';
+  position:absolute;left:0;top:8px;
+  width:6px;height:6px;border-radius:50%;
+  background:var(--green);
+}
+
+/* ── Data safety ──────────────────────────────────────── */
+.safety-card{
+  border:1px solid var(--divider);
+  border-radius:12px;
+  padding:20px;
+  max-width:680px;
+}
+.safety-line{
+  display:flex;align-items:flex-start;gap:12px;
+  font-size:13px;color:var(--text);margin-bottom:14px;
+}
+.safety-line svg{width:20px;height:20px;flex-shrink:0;fill:var(--green);margin-top:1px}
+.skill-categories{display:flex;flex-direction:column;gap:14px}
+.skill-cat-name{font-size:12px;font-weight:500;color:var(--text2);margin-bottom:6px;text-transform:uppercase;letter-spacing:.4px}
+.skill-pills{display:flex;flex-wrap:wrap;gap:6px}
+.skill-pill{
+  font-size:12px;
+  border:1px solid var(--divider);
+  border-radius:8px;
+  padding:5px 10px;
+  color:var(--text);
+  background:var(--surface);
+}
+
+/* ── Ratings ──────────────────────────────────────────── */
+.ratings-summary{
+  display:flex;
+  gap:48px;
+  align-items:center;
+  margin-bottom:28px;
+  flex-wrap:wrap;
+}
+.rating-big{text-align:center}
+.rating-num{font-size:56px;font-weight:400;line-height:1;color:var(--text)}
+.rating-stars{margin:8px 0;display:flex;gap:2px;justify-content:center}
+.rating-stars svg{width:16px;height:16px;fill:var(--star)}
+.rating-count{font-size:12px;color:var(--text3)}
+.rating-bars{flex:1;min-width:220px;max-width:340px;display:flex;flex-direction:column;gap:6px}
+.rating-bar-row{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--text2)}
+.rating-bar-row .bar{flex:1}
+.rating-bar-row .bar > span{background:var(--star)}
+
+.review{
+  border-bottom:1px solid var(--divider);
+  padding:18px 0;
+}
+.review:last-child{border-bottom:none}
+.review-head{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.review-avatar{
+  width:32px;height:32px;border-radius:50%;
+  background:var(--surface);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:500;color:var(--text2);
+  border:1px solid var(--divider);
+}
+.review-name{font-size:13px;font-weight:500}
+.review-stars{display:flex;gap:1px;margin-left:auto}
+.review-stars svg{width:13px;height:13px;fill:var(--star)}
+.review-stars svg.empty{fill:var(--divider)}
+.review-meta{font-size:11px;color:var(--text3);margin-top:1px}
+.review-body{font-size:13px;color:var(--text);line-height:1.6;max-width:680px}
+
+/* ── App info table ───────────────────────────────────── */
+.info-table{max-width:680px}
+.info-row{
+  display:flex;
+  justify-content:space-between;
+  gap:24px;
+  padding:12px 0;
+  border-bottom:1px solid var(--divider);
+  font-size:13px;
+}
+.info-row:last-child{border-bottom:none}
+.info-label{color:var(--text2);flex-shrink:0}
+.info-value{color:var(--text);text-align:right}
+.info-value a{color:var(--link);text-decoration:none}
+.info-value a:hover{text-decoration:underline}
+
+/* ── Version history ──────────────────────────────────── */
+details{max-width:680px;border:1px solid var(--divider);border-radius:12px;overflow:hidden}
+summary{
+  padding:14px 18px;
+  cursor:pointer;
+  font-size:13px;font-weight:500;
+  color:var(--link);
+  list-style:none;
+  display:flex;align-items:center;justify-content:space-between;
+}
+summary::-webkit-details-marker{display:none}
+summary::after{content:'expand_more';font-family:inherit;font-size:0;width:18px;height:18px;border-right:2px solid var(--link);border-bottom:2px solid var(--link);transform:rotate(45deg);margin-top:-4px;transition:transform .2s}
+details[open] summary::after{transform:rotate(-135deg);margin-top:4px}
+.version-list{padding:4px 18px 16px;display:flex;flex-direction:column;gap:14px}
+.version-item{display:flex;gap:14px;font-size:12.5px}
+.version-tag{
+  flex-shrink:0;width:52px;
+  font-weight:700;color:var(--text2);
+  font-variant-numeric:tabular-nums;
+}
+.version-body b{display:block;color:var(--text);font-size:13px;margin-bottom:2px}
+.version-body span{color:var(--text2)}
+
+/* ── Footer ───────────────────────────────────────────── */
+.footer{
+  margin-top:48px;
+  padding-top:20px;
+  border-top:1px solid var(--divider);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+  font-size:11px;
+  color:var(--text3);
+}
+.footer a{color:var(--text3);text-decoration:underline}
+
+@media(max-width:600px){
+  .app-header{flex-direction:column;align-items:flex-start}
+  .icon{width:88px;height:88px;border-radius:20px;font-size:34px}
+  .stats-row{max-width:100%}
+  .ratings-summary{gap:24px}
+}
+</style>
+<style>
+.ide-tabbar{position:sticky;top:0;z-index:99999;display:flex;align-items:stretch;background:#2d2d2d;border-bottom:1px solid #3a3a3a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+.ide-tabbar .dots{flex-shrink:0;display:flex;align-items:center;gap:6px;padding:0 14px}
+.ide-tabbar .dots span{width:10px;height:10px;border-radius:50%;display:inline-block}
+.ide-tabbar .dots .r{background:#ff5f56}
+.ide-tabbar .dots .y{background:#ffbd2e}
+.ide-tabbar .dots .g{background:#27c93f}
+.ide-tabbar .tabs{display:flex;overflow-x:auto;scrollbar-width:none;flex:1}
+.ide-tabbar .tabs::-webkit-scrollbar{display:none}
+.ide-tabbar .tab{flex-shrink:0;display:flex;align-items:center;gap:7px;padding:10px 16px;font-size:12.5px;color:#8a8a8a;text-decoration:none;white-space:nowrap;border-right:1px solid #3a3a3a;border-top:2px solid transparent;transition:background .15s,color .15s}
+.ide-tabbar .tab:hover{background:#333;color:#ddd}
+.ide-tabbar .tab.active{background:#1e1e1e;color:#fff}
+.ide-tabbar .tab .file-icon{font-weight:700;font-size:12px;display:inline-flex;align-items:center}
+.ide-tabbar .tab .file-icon svg{display:block}
+.ide-tabbar .tab .tab-close{margin-left:2px;opacity:0;color:#888;font-size:13px;transition:opacity .15s}
+.ide-tabbar .tab:hover .tab-close{opacity:1}
+.ide-tabbar .tab.type-basic .file-icon{color:#e37933}
+.ide-tabbar .tab.type-basic.active{border-top-color:#e37933}
+.ide-tabbar .tab.type-playstore .file-icon{color:#01875f}
+.ide-tabbar .tab.type-playstore.active{border-top-color:#01875f}
+.ide-tabbar .tab.type-json .file-icon{color:#e8c547}
+.ide-tabbar .tab.type-json.active{border-top-color:#e8c547}
+.ide-tabbar .tab.type-md .file-icon{color:#519aba}
+.ide-tabbar .tab.type-md.active{border-top-color:#519aba}
+@media print{.ide-tabbar{display:none}}
+@media (max-width:600px){.ide-tabbar .tab{padding:9px 12px;font-size:12px}}
+</style>
+</head>
+<body>
+<div class="ide-tabbar">
+  <div class="dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+  <div class="tabs">
+    <a href="index.html" class="tab type-basic"><span class="file-icon">&lt;/&gt;</span>index.html<span class="tab-close">&times;</span></a>
+    <a href="resume-markdown.html" class="tab type-md"><span class="file-icon">M&darr;</span>resume.md<span class="tab-close">&times;</span></a>
+    <a href="resume-json.html" class="tab type-json"><span class="file-icon">{ }</span>resume.json<span class="tab-close">&times;</span></a>
+    <a href="resume-android.html" class="tab type-playstore active"><span class="file-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zM20.5 8c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zM15.53 2.16l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C13.85 1.23 12.95 1 12 1c-.96 0-1.86.23-2.66.63L7.85.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31C6.97 3.26 6 5.01 6 7h12c0-1.99-.97-3.75-2.47-4.84zM10 5H9V4h1v1zm5 0h-1V4h1v1z"/></svg></span>resume-android.apk<span class="tab-close">&times;</span></a>
+  </div>
+</div>
+<script>
+(function(){
+  var tabs=document.querySelector('.ide-tabbar .tabs');
+  var active=document.querySelector('.ide-tabbar .tab.active');
+  if(tabs && active){
+    var tabsRect=tabs.getBoundingClientRect();
+    var activeRect=active.getBoundingClientRect();
+    tabs.scrollLeft+=activeRect.left-tabsRect.left;
+  }
+})();
+</script>
+
+<div class="page">
+
+  <!-- App header -->
+  <div class="app-header">
+    <div class="icon">BD</div>
+    <div class="app-meta">
+      <h1 class="app-title">Bill Dwyer: Senior Android Engineer</h1>
+      <div class="app-dev">
+        Bill Dwyer
+        <svg class="verified" viewBox="0 0 24 24"><path d="M12 1L9 4H5v4L2 11l3 3v4h4l3 3 3-3h4v-4l3-3-3-3V4h-4l-3-3zm-1.2 14.4L7 11.6l1.4-1.4 2.4 2.4 5.4-5.4L17.6 8.6l-6.8 6.8z"/></svg>
+      </div>
+      <div class="stats-row">
+        <div class="stat">
+          <div class="stat-value">
+            4.9 <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
+          <div class="stat-label">23 reviews</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">20+ yrs</div>
+          <div class="stat-label">In production</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">PG</div>
+          <div class="stat-label">Mild sarcasm</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tags">
+    <span class="tag">Productivity</span>
+    <span class="tag">Tools</span>
+    <span class="tag">Editors' Choice</span>
+    <span class="tag">Top Developer</span>
+  </div>
+
+  <div class="install-row">
+    <button class="btn-install">Hire</button>
+    <span class="install-note">Resume.pdf · 47 KB · No ads, no in-app purchases (will accept equity)</span>
+  </div>
+
+  <!-- Screenshots -->
+  <div class="shots">
+
+    <div class="shot shot-1">
+      <div class="shot-bar"><span>eBay</span><span>2024–Now</span></div>
+      <div class="shot-body">
+        <div class="shot-headline">Technical Lead &amp; Agent-Driven Dev</div>
+        <div class="shot-sub">Senior Android Engineer · Portland, OR</div>
+        <div class="metric"><span>Android team size</span><b>Doubled</b></div>
+        <div class="bar"><span style="width:100%;background:#0064d2"></span></div>
+        <div class="metric"><span>Agent-driven dev adoption</span><b>Team-wide</b></div>
+        <div class="bar"><span style="width:90%;background:#0064d2"></span></div>
+        <div class="chip-row">
+          <span class="mini-chip">ADRs</span>
+          <span class="mini-chip">Mentorship</span>
+          <span class="mini-chip">Claude Code</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shot shot-2">
+      <div class="shot-bar"><span>New Relic</span><span>2019–24</span></div>
+      <div class="shot-body">
+        <div class="shot-headline">Mobile Observability Platform</div>
+        <div class="shot-sub">Led Android · 50+ screens migrated</div>
+        <div class="metric"><span>Java → Kotlin</span><b>100%</b></div>
+        <div class="bar"><span style="width:100%;background:#01875f"></span></div>
+        <div class="metric"><span>XML → Compose</span><b>100%</b></div>
+        <div class="bar"><span style="width:100%;background:#01875f"></span></div>
+        <div class="metric"><span>"ChatGPT-like" feature</span><b>Shipped</b></div>
+        <div class="bar"><span style="width:100%;background:#01875f"></span></div>
+      </div>
+    </div>
+
+    <div class="shot shot-5">
+      <div class="shot-bar"><span>Cvent</span><span>2017–19</span></div>
+      <div class="shot-body">
+        <div class="shot-headline">Tech Lead &amp; React Native Pilot</div>
+        <div class="shot-sub">Promoted to tech lead in 6 months · Portland, OR</div>
+        <div class="metric"><span>Native → RN pilot</span><b>Approved</b></div>
+        <div class="bar"><span style="width:80%;background:#1a73e8"></span></div>
+        <div class="metric"><span>Storybook component lib</span><b>Adopted</b></div>
+        <div class="bar"><span style="width:90%;background:#1a73e8"></span></div>
+        <div class="chip-row">
+          <span class="mini-chip">React Native</span>
+          <span class="mini-chip">Storybook</span>
+          <span class="mini-chip">Mentorship</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shot shot-4">
+      <div class="shot-bar"><span>DAT Solutions</span><span>2016–17</span></div>
+      <div class="shot-body">
+        <div class="shot-headline">DAT Load Board for Truckers</div>
+        <div class="shot-sub">0→1 Android launch · Portland, OR</div>
+        <div class="metric"><span>Beta → Launch</span><b>Shipped</b></div>
+        <div class="bar"><span style="width:100%;background:#7c3aed"></span></div>
+        <div class="metric"><span>DAT Trucker app</span><b>Maintained</b></div>
+        <div class="bar"><span style="width:70%;background:#7c3aed"></span></div>
+        <div class="chip-row">
+          <span class="mini-chip">REST APIs</span>
+          <span class="mini-chip">Node.js</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shot shot-6">
+      <div class="shot-bar"><span>Shiftwise, Inc.</span><span>2013–16</span></div>
+      <div class="shot-body">
+        <div class="shot-headline">First Android &amp; iOS Apps</div>
+        <div class="shot-sub">Lead engineer · Portland, OR</div>
+        <div class="metric"><span>Cross-platform libraries</span><b>Shared</b></div>
+        <div class="bar"><span style="width:85%;background:#ea4335"></span></div>
+        <div class="metric"><span>Automated UI tests</span><b>Added</b></div>
+        <div class="bar"><span style="width:90%;background:#ea4335"></span></div>
+        <div class="chip-row">
+          <span class="mini-chip">Angular</span>
+          <span class="mini-chip">ServiceStack</span>
+          <span class="mini-chip">Mongo</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shot shot-7">
+      <div class="shot-bar"><span>Pop Art, Inc.</span><span>2012–13</span></div>
+      <div class="shot-body">
+        <div class="shot-headline">PhoneGap iOS App</div>
+        <div class="shot-sub">Agile team lead · Portland, OR</div>
+        <div class="metric"><span>ASP.NET MVC backend</span><b>Built</b></div>
+        <div class="bar"><span style="width:90%;background:#f9ab00"></span></div>
+        <div class="metric"><span>Parallax sites</span><b>Pre-library era</b></div>
+        <div class="bar"><span style="width:75%;background:#f9ab00"></span></div>
+        <div class="chip-row">
+          <span class="mini-chip">jQuery Mobile</span>
+          <span class="mini-chip">HTML5</span>
+          <span class="mini-chip">AJAX</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shot shot-8">
+      <div class="shot-bar"><span>Pepper Hamilton LLP</span><span>2011–12</span></div>
+      <div class="shot-body">
+        <div class="shot-headline">Custom .NET Web Apps</div>
+        <div class="shot-sub">Web Developer · Philadelphia, PA</div>
+        <div class="metric"><span>SharePoint 2010</span><b>Installed</b></div>
+        <div class="bar"><span style="width:100%;background:#5f6368"></span></div>
+        <div class="metric"><span>Database improvements</span><b>Shipped</b></div>
+        <div class="bar"><span style="width:80%;background:#5f6368"></span></div>
+        <div class="chip-row">
+          <span class="mini-chip">.NET</span>
+          <span class="mini-chip">SharePoint</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shot shot-3">
+      <div class="shot-bar"><span>Special Edition</span><span>2010–11</span></div>
+      <div class="shot-body">
+        <div class="shot-headline">Arizona to Argentina</div>
+        <div class="shot-sub">Solo motorcycle tour · 8 months</div>
+        <div class="route-line">
+          <div class="route-stop"><b>Arizona, USA</b>Start</div>
+          <div class="route-stop"><b>Central America</b>Border crossings ×7</div>
+          <div class="route-stop"><b>Argentina</b>20,000 mi · finish</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="shot shot-9">
+      <div class="shot-bar"><span>Univ. of Phoenix</span><span>2007–10</span></div>
+      <div class="shot-body">
+        <div class="shot-headline">Online Classroom Platform</div>
+        <div class="shot-sub">Software Developer · Phoenix, AZ</div>
+        <div class="metric"><span>Enrolled students served</span><b>400,000+</b></div>
+        <div class="bar"><span style="width:100%;background:#8e24aa"></span></div>
+        <div class="metric"><span>SOAP/REST services</span><b>Built</b></div>
+        <div class="bar"><span style="width:85%;background:#8e24aa"></span></div>
+        <div class="chip-row">
+          <span class="mini-chip">ASP.NET</span>
+          <span class="mini-chip">MSSQL</span>
+          <span class="mini-chip">Oracle</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shot shot-10">
+      <div class="shot-bar"><span>Hands On Technology</span><span>2005–07</span></div>
+      <div class="shot-body">
+        <div class="shot-headline">Insurance Claims Encryption</div>
+        <div class="shot-sub">Software Developer · Hinsdale, IL</div>
+        <div class="metric"><span>Report viewer</span><b>70+ reports</b></div>
+        <div class="bar"><span style="width:90%;background:#00838f"></span></div>
+        <div class="metric"><span>MySQL → SQL Server 2005</span><b>300+ clients</b></div>
+        <div class="bar"><span style="width:95%;background:#00838f"></span></div>
+        <div class="chip-row">
+          <span class="mini-chip">.NET</span>
+          <span class="mini-chip">CRM/CMS</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shot shot-11">
+      <div class="shot-bar"><span>Ulta, Inc.</span><span>2004–05</span></div>
+      <div class="shot-body">
+        <div class="shot-headline">Internal GUI Tooling</div>
+        <div class="shot-sub">Software Developer · Romeoville, IL</div>
+        <div class="metric"><span>C++/MFC GUI</span><b>Improved</b></div>
+        <div class="bar"><span style="width:80%;background:#6d4c41"></span></div>
+        <div class="metric"><span>Batch transfers</span><b>incl. SAP</b></div>
+        <div class="bar"><span style="width:70%;background:#6d4c41"></span></div>
+        <div class="chip-row">
+          <span class="mini-chip">C++</span>
+          <span class="mini-chip">MFC</span>
+          <span class="mini-chip">SQL</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shot shot-12">
+      <div class="shot-bar"><span>Remote Operations Co.</span><span>2003–04</span></div>
+      <div class="shot-body">
+        <div class="shot-headline">Inventory &amp; CRM Systems</div>
+        <div class="shot-sub">Project lead · Green Bay, WI</div>
+        <div class="metric"><span>Land O' Lakes CRM</span><b>Delivered</b></div>
+        <div class="bar"><span style="width:90%;background:#37474f"></span></div>
+        <div class="metric"><span>White Clover Dairy</span><b>Delivered</b></div>
+        <div class="bar"><span style="width:85%;background:#37474f"></span></div>
+        <div class="chip-row">
+          <span class="mini-chip">C#</span>
+          <span class="mini-chip">.NET</span>
+          <span class="mini-chip">Windows Forms</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <hr>
+
+  <!-- About -->
+  <div class="about">
+    <h2>About this app</h2>
+    <p>Versatile engineer with experience across multiple technologies, specializing in Android applications for the past 10+ years. Driven by a passion for learning and problem-solving — finding innovative ways of connecting users and technology is this developer's favorite kind of bug report.</p>
+    <div class="about-extra" id="about-extra">
+      <p>Began as a .NET/C# generalist building insurance and CRM systems in the Midwest, then took a hard left turn to ride a motorcycle from Arizona to Argentina (20,000 miles, 8 months, one book written about it). Returned, pivoted into mobile, and has spent the last decade-plus shipping Android apps at scale — from a trucking load board to an observability platform to eBay's item discovery surfaces. Comfortable leading, mentoring, and migrating very large codebases without anyone noticing until it's done.</p>
+    </div>
+    <button class="read-more" id="read-more-btn" onclick="document.getElementById('about-extra').classList.toggle('open'); this.textContent = this.textContent==='Read more' ? 'Read less' : 'Read more'">Read more</button>
+  </div>
+
+  <hr>
+
+  <!-- What's New -->
+  <div class="whats-new">
+    <h2>What's new</h2>
+    <div class="section-sub">Updated on Jun 9, 2026 · Current version: v12.0 (eBay)</div>
+    <ul>
+      <li>Delivered features from design to launch to grow seller sales and engage first-time users, as part of eBay's top strategic initiative</li>
+      <li>Serving as technical lead as the Android team doubled in size — onboarding, mentoring, redesigning team processes, and driving architectural alignment across teams</li>
+      <li>Pioneered new techniques for agent driven development, including a shared context system later adopted outside the team and new code quality tooling</li>
+      <li>Defined technical designs for key features and resolved critical production bugs, including issues in unfamiliar codebases</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <!-- Data safety -->
+  <div class="safety">
+    <h2>Skills &amp; permissions</h2>
+    <div class="section-sub">This developer says this profile does not collect data it doesn't need, and shares it freely with hiring managers.</div>
+    <div class="safety-card">
+      <div class="safety-line">
+        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1.2 14.4L6 11.6l1.4-1.4 3.4 3.4 6.4-6.4L18.6 8.8l-7.8 7.6z"/></svg>
+        <span>No surprise side projects. What's listed below is what you get.</span>
+      </div>
+      <div class="skill-categories">
+        <div>
+          <div class="skill-cat-name">Android</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Kotlin</span>
+            <span class="skill-pill">Java</span>
+            <span class="skill-pill">Jetpack Compose</span>
+            <span class="skill-pill">Material Design</span>
+            <span class="skill-pill">ViewModels</span>
+            <span class="skill-pill">Flows</span>
+            <span class="skill-pill">Coroutines</span>
+            <span class="skill-pill">Dagger</span>
+            <span class="skill-pill">Retrofit</span>
+            <span class="skill-pill">MVVM</span>
+          </div>
+        </div>
+        <div>
+          <div class="skill-cat-name">AI Integration</div>
+          <div class="skill-pills">
+            <span class="skill-pill">GitHub Copilot</span>
+            <span class="skill-pill">Cline</span>
+            <span class="skill-pill">Claude Code</span>
+          </div>
+        </div>
+        <div>
+          <div class="skill-cat-name">Web &amp; Server</div>
+          <div class="skill-pills">
+            <span class="skill-pill">React</span>
+            <span class="skill-pill">React Native</span>
+            <span class="skill-pill">JavaScript</span>
+            <span class="skill-pill">Node.js</span>
+            <span class="skill-pill">GraphQL</span>
+            <span class="skill-pill">C#</span>
+          </div>
+        </div>
+        <div>
+          <div class="skill-cat-name">Data &amp; Infra</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Postgres</span>
+            <span class="skill-pill">SQLite</span>
+            <span class="skill-pill">MySQL</span>
+            <span class="skill-pill">NoSQL</span>
+            <span class="skill-pill">Docker</span>
+            <span class="skill-pill">AWS</span>
+            <span class="skill-pill">git</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Ratings -->
+  <div class="ratings">
+    <h2>Ratings and reviews</h2>
+    <div class="ratings-summary">
+      <div class="rating-big">
+        <div class="rating-num">4.9</div>
+        <div class="rating-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+        <div class="rating-count">23 reviews</div>
+      </div>
+      <div class="rating-bars">
+        <div class="rating-bar-row"><span>5</span><div class="bar"><span style="width:92%"></span></div></div>
+        <div class="rating-bar-row"><span>4</span><div class="bar"><span style="width:6%"></span></div></div>
+        <div class="rating-bar-row"><span>3</span><div class="bar"><span style="width:1.5%"></span></div></div>
+        <div class="rating-bar-row"><span>2</span><div class="bar"><span style="width:0.5%"></span></div></div>
+        <div class="rating-bar-row"><span>1</span><div class="bar"><span style="width:0.5%"></span></div></div>
+      </div>
+    </div>
+
+    <div class="review">
+      <div class="review-head">
+        <div class="review-avatar">EM</div>
+        <div>
+          <div class="review-name">Engineering Manager, New Relic</div>
+          <div class="review-meta">Verified install · 2024</div>
+        </div>
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+      </div>
+      <div class="review-body">Migrated 50+ screens to Kotlin and Compose without breaking prod once. Set up our CI pipeline. Mentored two juniors into mid-levels. Would deploy again.</div>
+    </div>
+
+    <div class="review">
+      <div class="review-head">
+        <div class="review-avatar">PM</div>
+        <div>
+          <div class="review-name">Product Manager, eBay</div>
+          <div class="review-meta">Verified install · 2025</div>
+        </div>
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+      </div>
+      <div class="review-body">Took our coupon feature, refactored it, and somehow made it faster AND more readable. We're still not sure how. 10/10, no notes.</div>
+    </div>
+
+    <div class="review">
+      <div class="review-head">
+        <div class="review-avatar">FC</div>
+        <div>
+          <div class="review-name">Former Coworker</div>
+          <div class="review-meta">Verified install · 2011</div>
+        </div>
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg class="empty" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+      </div>
+      <div class="review-body">Left for 8 months to ride a motorcycle to Argentina. Came back with a book deal and zero regrets. Docking one star for making the rest of us look bad at career planning.</div>
+    </div>
+
+    <div class="review">
+      <div class="review-head">
+        <div class="review-avatar">SN</div>
+        <div>
+          <div class="review-name">Saint Norbert College Alumni Network</div>
+          <div class="review-meta">Verified install · 2004</div>
+        </div>
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+      </div>
+      <div class="review-body">B.S. in Computer Science AND Philosophy. Can debug your code and your existential crisis, often in the same standup.</div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- App info -->
+  <div class="app-info">
+    <h2>App info</h2>
+    <div class="info-table">
+      <div class="info-row">
+        <div class="info-label">Updated on</div>
+        <div class="info-value">Jun 9, 2026</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Offered by</div>
+        <div class="info-value">Bill Dwyer</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Location</div>
+        <div class="info-value">Portland, OR</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Education</div>
+        <div class="info-value">B.S. — Majors: Computer Science and Philosophy<br>Saint Norbert College, 2000–2004</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Requires</div>
+        <div class="info-value">Coffee 5.0 and up</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Contains ads</div>
+        <div class="info-value">No</div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Version history -->
+  <details>
+    <summary>Version history</summary>
+    <div class="version-list">
+      <div class="version-item"><div class="version-tag">v12.0</div><div class="version-body"><b>eBay</b><span>Item discovery, offers &amp; pricing tools — Portland, OR · 2024–Present</span></div></div>
+      <div class="version-item"><div class="version-tag">v11.0</div><div class="version-body"><b>New Relic</b><span>Mobile observability platform lead — Portland, OR · 2019–2024</span></div></div>
+      <div class="version-item"><div class="version-tag">v10.0</div><div class="version-body"><b>Cvent</b><span>React Native pilot &amp; tech lead — Portland, OR · 2017–2019</span></div></div>
+      <div class="version-item"><div class="version-tag">v9.0</div><div class="version-body"><b>DAT Solutions</b><span>Load Board for Truckers Android app — Portland, OR · 2016–2017</span></div></div>
+      <div class="version-item"><div class="version-tag">v8.0</div><div class="version-body"><b>Shiftwise, Inc.</b><span>First Android &amp; iOS apps, cross-platform libraries — Portland, OR · 2013–2016</span></div></div>
+      <div class="version-item"><div class="version-tag">v7.0</div><div class="version-body"><b>Pop Art, Inc.</b><span>ASP.NET MVC + PhoneGap iOS app — Portland, OR · 2012–2013</span></div></div>
+      <div class="version-item"><div class="version-tag">v6.0</div><div class="version-body"><b>Pepper Hamilton LLP</b><span>.NET web apps, firm-wide SharePoint 2010 — Philadelphia, PA · 2011–2012</span></div></div>
+      <div class="version-item"><div class="version-tag">v5.0</div><div class="version-body"><b>Special Edition: Touring Release</b><span>Solo motorcycle journey, Arizona → Argentina · 2010–2011</span></div></div>
+      <div class="version-item"><div class="version-tag">v4.0</div><div class="version-body"><b>University of Phoenix Online</b><span>Classroom platform for 400,000+ students — Phoenix, AZ · 2007–2010</span></div></div>
+      <div class="version-item"><div class="version-tag">v3.0</div><div class="version-body"><b>Hands On Technology</b><span>Insurance encryption, 300+ DB migration — Hinsdale, IL · 2005–2007</span></div></div>
+      <div class="version-item"><div class="version-tag">v2.0</div><div class="version-body"><b>Ulta, Inc.</b><span>C++/MFC GUI, SQL reporting, SAP transfers — Romeoville, IL · 2004–2005</span></div></div>
+      <div class="version-item"><div class="version-tag">v1.0</div><div class="version-body"><b>Remote Operations Co.</b><span>Initial release. Inventory &amp; CRM systems — Green Bay, WI · 2003–2004</span></div></div>
+    </div>
+  </details>
+
+  <div class="footer">
+    <span>Bill Dwyer Apps · Portland, OR</span>
+  </div>
+
+</div>
+</body>
+</html>

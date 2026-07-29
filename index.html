@@ -3,27 +3,469 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bill Dwyer</title>
+<meta name="format-detection" content="telephone=no">
+<title>Bill Dwyer — Resume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  body {
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #0a0a0a;
-    color: #e2ddd5;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    text-align: center;
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:     #fbfaf8;
+    --text:   #1f1f1f;
+    --muted:  #5a5a5a;
+    --rule:   #d8d5cf;
+    --accent: #1a1a1a;
   }
-  h1 { font-size: 1.5rem; font-weight: 500; letter-spacing: 0.02em; }
-  p { color: #6a6460; margin-top: 0.5rem; }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:     #1b1a17;
+      --text:   #e9e6df;
+      --muted:  #9c9890;
+      --rule:   #3a372f;
+      --accent: #f0ece3;
+    }
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 56px 24px 80px;
+  }
+
+  header {
+    margin-bottom: 40px;
+  }
+
+  h1 {
+    font-family: 'Source Serif 4', serif;
+    font-weight: 700;
+    font-size: 34px;
+    letter-spacing: -0.01em;
+  }
+
+  .title {
+    font-size: 17px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .contact {
+    margin-top: 12px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .contact a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--rule); }
+  .contact a:hover { color: var(--accent); border-color: var(--accent); }
+  .contact span + span::before { content: "  ·  "; color: var(--rule); }
+
+  section { margin-bottom: 36px; }
+
+  h2 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    row-gap: 8px;
+    column-gap: 12px;
+    font-size: 14px;
+  }
+  .skills-grid dt {
+    font-weight: 600;
+    color: var(--muted);
+  }
+  .skills-grid dd { color: var(--text); }
+
+  .job { margin-bottom: 26px; }
+  .job:last-child { margin-bottom: 0; }
+
+  .job-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+  }
+
+  .job-role {
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  .job-meta {
+    font-size: 13px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .job-company {
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 1px;
+    margin-bottom: 8px;
+  }
+
+  ul.bullets {
+    list-style: none;
+    padding: 0;
+  }
+  ul.bullets li {
+    position: relative;
+    padding-left: 16px;
+    margin-bottom: 5px;
+    font-size: 14.5px;
+  }
+  ul.bullets li::before {
+    content: "–";
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+  }
+  ul.bullets a { color: var(--text); }
+
+  .intro {
+    font-size: 14.5px;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .edu-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    font-size: 14.5px;
+  }
+  .edu-school { font-weight: 600; }
+  .edu-meta { color: var(--muted); font-size: 13px; }
+  .edu-degree { color: var(--muted); margin-top: 2px; font-size: 14px; }
+
+  .misc-list {
+    list-style: none;
+    padding: 0;
+    font-size: 14.5px;
+  }
+  .misc-list li {
+    position: relative;
+    padding-left: 16px;
+    margin-bottom: 5px;
+  }
+  .misc-list li::before {
+    content: "–";
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+  }
+
+  footer {
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+    font-size: 13px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  footer a { color: var(--muted); }
+
+  @media print {
+    body { background: #fff; }
+    footer { display: none; }
+  }
+</style>
+<style>
+.ide-tabbar{position:sticky;top:0;z-index:99999;display:flex;align-items:stretch;background:#2d2d2d;border-bottom:1px solid #3a3a3a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+.ide-tabbar .dots{flex-shrink:0;display:flex;align-items:center;gap:6px;padding:0 14px}
+.ide-tabbar .dots span{width:10px;height:10px;border-radius:50%;display:inline-block}
+.ide-tabbar .dots .r{background:#ff5f56}
+.ide-tabbar .dots .y{background:#ffbd2e}
+.ide-tabbar .dots .g{background:#27c93f}
+.ide-tabbar .tabs{display:flex;overflow-x:auto;scrollbar-width:none;flex:1}
+.ide-tabbar .tabs::-webkit-scrollbar{display:none}
+.ide-tabbar .tab{flex-shrink:0;display:flex;align-items:center;gap:7px;padding:10px 16px;font-size:12.5px;color:#8a8a8a;text-decoration:none;white-space:nowrap;border-right:1px solid #3a3a3a;border-top:2px solid transparent;transition:background .15s,color .15s}
+.ide-tabbar .tab:hover{background:#333;color:#ddd}
+.ide-tabbar .tab.active{background:#1e1e1e;color:#fff}
+.ide-tabbar .tab .file-icon{font-weight:700;font-size:12px;display:inline-flex;align-items:center}
+.ide-tabbar .tab .file-icon svg{display:block}
+.ide-tabbar .tab .tab-close{margin-left:2px;opacity:0;color:#888;font-size:13px;transition:opacity .15s}
+.ide-tabbar .tab:hover .tab-close{opacity:1}
+.ide-tabbar .tab.type-basic .file-icon{color:#e37933}
+.ide-tabbar .tab.type-basic.active{border-top-color:#e37933}
+.ide-tabbar .tab.type-playstore .file-icon{color:#01875f}
+.ide-tabbar .tab.type-playstore.active{border-top-color:#01875f}
+.ide-tabbar .tab.type-json .file-icon{color:#e8c547}
+.ide-tabbar .tab.type-json.active{border-top-color:#e8c547}
+.ide-tabbar .tab.type-md .file-icon{color:#519aba}
+.ide-tabbar .tab.type-md.active{border-top-color:#519aba}
+@media print{.ide-tabbar{display:none}}
+@media (max-width:600px){.ide-tabbar .tab{padding:9px 12px;font-size:12px}}
+</style>
+<style>
+.preview-bubble{position:fixed;top:54px;right:20px;z-index:9998;display:flex;align-items:center;gap:5px;padding:5px 12px;background:rgba(20,20,20,.4);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.14);border-radius:999px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:11px;font-weight:500;letter-spacing:.3px;color:rgba(255,255,255,.7);pointer-events:none}
+.preview-bubble svg{width:11px;height:11px;opacity:.8;display:block}
+@media print{.preview-bubble{display:none}}
+@media (max-width:600px){.preview-bubble{top:auto;bottom:70px;right:14px}}
 </style>
 </head>
 <body>
-  <div>
-    <h1>billdwyer.dev</h1>
-    <p>Placeholder page — site is live.</p>
+<div class="ide-tabbar">
+  <div class="dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+  <div class="tabs">
+    <a href="index.html" class="tab type-basic active"><span class="file-icon">&lt;/&gt;</span>index.html<span class="tab-close">&times;</span></a>
+    <a href="resume-markdown.html" class="tab type-md"><span class="file-icon">M&darr;</span>resume.md<span class="tab-close">&times;</span></a>
+    <a href="resume-json.html" class="tab type-json"><span class="file-icon">{ }</span>resume.json<span class="tab-close">&times;</span></a>
+    <a href="resume-android.html" class="tab type-playstore"><span class="file-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zM20.5 8c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zM15.53 2.16l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C13.85 1.23 12.95 1 12 1c-.96 0-1.86.23-2.66.63L7.85.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31C6.97 3.26 6 5.01 6 7h12c0-1.99-.97-3.75-2.47-4.84zM10 5H9V4h1v1zm5 0h-1V4h1v1z"/></svg></span>resume-android.apk<span class="tab-close">&times;</span></a>
   </div>
+</div>
+<script>
+(function(){
+  var tabs=document.querySelector('.ide-tabbar .tabs');
+  var active=document.querySelector('.ide-tabbar .tab.active');
+  if(tabs && active){
+    var tabsRect=tabs.getBoundingClientRect();
+    var activeRect=active.getBoundingClientRect();
+    tabs.scrollLeft+=activeRect.left-tabsRect.left;
+  }
+})();
+</script>
+<div class="preview-bubble"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 5c-7.633 0-11 6.75-11 7s3.367 7 11 7 11-6.75 11-7-3.367-7-11-7zm0 12c-2.761 0-5-2.239-5-5s2.239-5 5-5 5 2.239 5 5-2.239 5-5 5zm0-8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3z"/></svg>Preview</div>
+<div class="page">
+
+  <header>
+    <h1>Bill Dwyer</h1>
+    <div class="title">Senior Android Engineer</div>
+  </header>
+
+  <section class="intro-section">
+    <p class="intro">Versatile engineer with experience across multiple technologies, specializing in Android applications for the past 10+ years. Driven by a passion for learning and problem-solving, I enjoy finding innovative ways of connecting users with technology!</p>
+  </section>
+
+  <section>
+    <h2>Miscellaneous</h2>
+    <ul class="misc-list">
+      <li>Flexible attitude with little oversight required</li>
+      <li>Able to prioritize efforts to consistently meet goals and measure progress</li>
+      <li>Appreciates autonomy and getting things done</li>
+      <li>Strong problem solving and communication skills</li>
+      <li>Nerdy disposition with a sense of humor ¯\_(ツ)_/¯</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Education</h2>
+    <div class="edu-row">
+      <div>
+        <div class="edu-school">Saint Norbert College</div>
+        <div class="edu-degree">Bachelor of Science<br>Majors: Computer Science and Philosophy</div>
+      </div>
+      <div class="edu-meta">2000 – 2004<br>Green Bay, Wisconsin</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Experience</h2>
+
+    <div class="job">
+      <div class="job-head">
+        <span class="job-role">Senior Android Engineer — eBay</span>
+        <span class="job-meta">09/2024 – Present</span>
+      </div>
+      <div class="job-company">Portland, Oregon</div>
+      <ul class="bullets">
+        <li>Delivered features from design to launch to grow seller sales and engage first-time users, as part of eBay's top strategic initiative</li>
+        <li>Served as technical lead as the Android team doubled in size, onboarding and mentoring engineers, redesigning team processes, established POC roles, authored ADRs, and drove architectural alignment across teams to reduce friction when implementing features spanning multiple codebases.</li>
+        <li>Pioneered new techniques for agent driven development on the team, building a shared context system later adopted by engineers outside the team, code quality tooling to maintain standards, and led internal workshops on new approaches.</li>
+        <li>Defined technical designs for key features, reviewed code across the team to ensure quality, and resolved critical production bugs, including issues in unfamiliar codebases</li>
+        <li>Play Store: <a href="https://play.google.com/store/apps/details?id=com.ebay.mobile">eBay</a></li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <span class="job-role">Senior Android Engineer — New Relic</span>
+        <span class="job-meta">11/2019 – 08/2024</span>
+      </div>
+      <div class="job-company">Portland, Oregon</div>
+      <ul class="bullets">
+        <li>Led Android project to create the mobile experience of the New Relic web platform</li>
+        <li>Developed features to show observability data visualizations, alerts users of issues, a custom querying mechanism and frequently extending existing features</li>
+        <li>Led effort to add ChatGPT-like feature and integrate company's AI solution</li>
+        <li>Migrated entire app (50+ screens) to use Kotlin and Jetpack Compose</li>
+        <li>Modernized architecture with updated patterns (ViewModels, Coroutines, Flows, Modularization, Navigation)</li>
+        <li>Established automated testing to surface quality concerns early</li>
+        <li>Mature engineering culture with CI pipeline, release automation, junior mentoring and steering team discussions in more productive directions</li>
+        <li>Play Store: <a href="https://play.google.com/store/apps/details?id=com.newrelic.rpm">New Relic</a></li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <span class="job-role">Senior Software Engineer — Cvent</span>
+        <span class="job-meta">08/2017 – 10/2019</span>
+      </div>
+      <div class="job-company">Portland, Oregon</div>
+      <ul class="bullets">
+        <li>Implemented new features on existing Android app using Java and Kotlin</li>
+        <li>Transitioned to tech lead within six months of hire</li>
+        <li>Led pilot project to inject React Native into existing app</li>
+        <li>Part of the initial team to establish new React Native app to replace legacy app</li>
+        <li>Created component library using Storybook to align with UX design and quickly test</li>
+        <li>Mentored new team members unfamiliar with tech stack and served as Android expert</li>
+        <li>Led company hosted React Native meetups and presented on various subjects</li>
+        <li>Play Store: <a href="https://play.google.com/store/apps/details?id=com.cvent.mobile.eventapp">Cvent Events</a></li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <span class="job-role">Senior Software Engineer — DAT Solutions</span>
+        <span class="job-meta">04/2016 – 08/2017</span>
+      </div>
+      <div class="job-company">Portland, Oregon</div>
+      <ul class="bullets">
+        <li>Created DAT Load Board for Truckers Android app to replace existing web app ("the Uber for Truckers")</li>
+        <li>Led feature development from project beginning to the initial launch</li>
+        <li>Established new REST APIs on NodeJS backend</li>
+        <li>Feature development and refactoring of existing DAT Trucker Android app</li>
+        <li>Play Store: <a href="https://play.google.com/store/apps/details?id=com.dat.fm.carrier">DAT Load Board for Truckers</a></li>
+        <li>Play Store: <a href="https://play.google.com/store/apps/details?id=com.tcore.android.LoadBoard">DAT Trucker</a></li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <span class="job-role">Senior Software Engineer — Shiftwise, Inc.</span>
+        <span class="job-meta">09/2013 – 03/2016</span>
+      </div>
+      <div class="job-company">Portland, Oregon</div>
+      <ul class="bullets">
+        <li>Lead engineer of team to deliver company's first Android and iOS app</li>
+        <li>Designed cross platform libraries that are shared between apps</li>
+        <li>Use of extensive automated tests, including functional UI testing</li>
+        <li>Full stack feature development in our core systems app using Angular, C#, ServiceStack, and Mongo</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <span class="job-role">Web Developer — Pop Art, Inc.</span>
+        <span class="job-meta">08/2012 – 09/2013</span>
+      </div>
+      <div class="job-company">Portland, Oregon</div>
+      <ul class="bullets">
+        <li>Led agile team, designed and developed an ASP.NET MVC server-side infrastructure in C# for a PhoneGap iOS app using jQuery Mobile to connect users with job opportunities over the country</li>
+        <li>Created responsive and parallaxing sites prior to libraries becoming available, using the latest HTML5 techniques including Javascript, jQuery, CSS3, and AJAX</li>
+        <li>Developed new features and maintained existing client websites across many different technology stacks</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <span class="job-role">Web Developer — Pepper Hamilton LLP</span>
+        <span class="job-meta">03/2011 – 05/2012</span>
+      </div>
+      <div class="job-company">Philadelphia, Pennsylvania</div>
+      <ul class="bullets">
+        <li>Built custom .NET web applications to fill in functionality gaps at a major law practice</li>
+        <li>Implemented Sharepoint 2010 installation for firm wide use</li>
+        <li>Database improvements that surveyed the firm's experience to facilitate pitches for prospective clients</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <span class="job-role">Travel Blogger</span>
+        <span class="job-meta">07/2010 – 03/2011</span>
+      </div>
+      <div class="job-company">Central and South America</div>
+      <ul class="bullets">
+        <li>Traveled solo overland on my motorcycle for eight months and 20,000 miles from Arizona to Argentina</li>
+        <li>Blogging my adventures by motorcycle around the world with a healthy audience</li>
+        <li>Gained exposure to Wordpress as a CMS with custom coded solutions</li>
+        <li>Self published a book chronicling the trip</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <span class="job-role">Software Developer — University of Phoenix Online</span>
+        <span class="job-meta">09/2007 – 07/2010</span>
+      </div>
+      <div class="job-company">Phoenix, Arizona</div>
+      <ul class="bullets">
+        <li>Responsible for maintenance of online classroom environment that served over 400,000 enrolled students</li>
+        <li>Worked with ASP.NET, C#, MSSQL, Oracle, SVN, REST and SOAP based web services</li>
+        <li>Created new services and systems with availability and scalability always in mind</li>
+        <li>Spearheaded efforts for complex problems with architecture designs and implementation</li>
+        <li>Mentored junior level developers</li>
+        <li>Helped design architecture for various projects</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <span class="job-role">Software Developer — Hands On Technology, Inc.</span>
+        <span class="job-meta">09/2005 – 09/2007</span>
+      </div>
+      <div class="job-company">Hinsdale, Illinois</div>
+      <ul class="bullets">
+        <li>Developed a .NET/C# application to encrypt and transmit claim information to insurance companies. This included dynamic electronic and paper form generation to accommodate the various standards among insurance companies</li>
+        <li>Redesigned the main product's report viewer. Created over 70 different reports and a system to perform updates</li>
+        <li>Led the project to migrate MySQL databases to Microsoft SQL Server 2005: strong database skills were key to completing this project, which successfully upgraded over 300 clients nationwide</li>
+        <li>Designed and implemented CRM and CMS tool for internal use</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <span class="job-role">Software Developer — Ulta, Inc.</span>
+        <span class="job-meta">12/2004 – 09/2005</span>
+      </div>
+      <div class="job-company">Romeoville, Illinois</div>
+      <ul class="bullets">
+        <li>Worked with C++ and MFC to improve the GUI of an internally used application and created a new message delivery system to aid fellow developers in fixing existing bugs</li>
+        <li>Created many SQL queries that ran against corporate financial data to be used for reporting</li>
+        <li>Developed batch processes to transfer data between multiple departments and software systems, the most notable system being SAP</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <span class="job-role">Software Developer — Remote Operations Company</span>
+        <span class="job-meta">07/2003 – 12/2004</span>
+      </div>
+      <div class="job-company">Green Bay, Wisconsin</div>
+      <ul class="bullets">
+        <li>Developed a C# Windows Form application to transfer lab data</li>
+        <li>Project lead during analysis, development, and implementation of a .NET based inventory and customer relationship management for Land O' Lakes, a nation-wide dairy producer and distributor</li>
+        <li>Technical lead during development of a .NET solution for an inventory system to track yields of production and location of goods for White Clover Dairy</li>
+        <li>Developed libraries for interacting with scanning devices, designed and implemented an environment to be used with portable data terminals for inventory purposes</li>
+      </ul>
+    </div>
+  </section>
+
+</div>
 </body>
 </html>
