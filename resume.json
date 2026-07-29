@@ -2,6 +2,7 @@
   "basics": {
     "name": "Bill Dwyer",
     "title": "Senior Android Engineer",
+    "email": "dwyer.bill@gmail.com",
     "summary": "Versatile engineer with experience across multiple technologies, specializing in Android applications for the past 10+ years. Driven by a passion for learning and problem-solving, I enjoy finding innovative ways of connecting users with technology!",
     "misc": [
       "Flexible attitude with little oversight required",
@@ -28,10 +29,10 @@
       "start": "09/2024",
       "end": "Present",
       "highlights": [
-        "Delivered features from design to launch to grow seller sales and engage first-time users, as part of eBay's top strategic initiative",
-        "Served as technical lead as the Android team doubled in size, onboarding and mentoring engineers, redesigning team processes, established POC roles, authored ADRs, and drove architectural alignment across teams to reduce friction when implementing features spanning multiple codebases.",
-        "Pioneered new techniques for agent driven development on the team, building a shared context system later adopted by engineers outside the team, code quality tooling to maintain standards, and led internal workshops on new approaches.",
-        "Defined technical designs for key features, reviewed code across the team to ensure quality, and resolved critical production bugs, including issues in unfamiliar codebases"
+        "Deliver features from design to launch to grow seller sales and engage first-time users, as part of eBay's top strategic initiative",
+        "Serve as technical lead as the Android team doubles in size, onboarding and mentoring engineers, redesigning team processes, establishing POC roles, authoring ADRs, and driving architectural alignment across teams to reduce friction when implementing features spanning multiple codebases",
+        "Establish new techniques for agent-driven development on the team, building a shared context system later adopted by engineers outside the team, code quality tooling to maintain standards, and leading internal workshops on new approaches",
+        "Define technical designs for key features, review code across the team to ensure quality, and resolve critical production bugs, including issues in unfamiliar codebases"
       ],
       "playStore": ["com.ebay.mobile"]
     },

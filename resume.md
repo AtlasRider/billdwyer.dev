@@ -8,6 +8,8 @@ Versatile engineer with experience across multiple technologies, specializing in
 - Strong problem solving and communication skills
 - Nerdy disposition with a sense of humor ¯\_(ツ)_/¯
 
+dwyer.bill@gmail.com
+
 ## Education
 
 Saint Norbert College  
@@ -21,10 +23,10 @@ Majors: Computer Science and Philosophy
 ### Senior Android Engineer — eBay
 *09/2024 – Present | Portland, Oregon*
 
-- Delivered features from design to launch to grow seller sales and engage first-time users, as part of eBay's top strategic initiative
-- Served as technical lead as the Android team doubled in size, onboarding and mentoring engineers, redesigning team processes, established POC roles, authored ADRs, and drove architectural alignment across teams to reduce friction when implementing features spanning multiple codebases.
-- Pioneered new techniques for agent driven development on the team, building a shared context system later adopted by engineers outside the team, code quality tooling to maintain standards, and led internal workshops on new approaches.
-- Defined technical designs for key features, reviewed code across the team to ensure quality, and resolved critical production bugs, including issues in unfamiliar codebases
+- Deliver features from design to launch to grow seller sales and engage first-time users, as part of eBay's top strategic initiative
+- Serve as technical lead as the Android team doubles in size, onboarding and mentoring engineers, redesigning team processes, establishing POC roles, authoring ADRs, and driving architectural alignment across teams to reduce friction when implementing features spanning multiple codebases
+- Establish new techniques for agent-driven development on the team, building a shared context system later adopted by engineers outside the team, code quality tooling to maintain standards, and leading internal workshops on new approaches
+- Define technical designs for key features, review code across the team to ensure quality, and resolve critical production bugs, including issues in unfamiliar codebases
 
 [Play Store](https://play.google.com/store/apps/details?id=com.ebay.mobile)
 
