@@ -8,8 +8,6 @@ Versatile engineer with experience across multiple technologies, specializing in
 - Strong problem solving and communication skills
 - Nerdy disposition with a sense of humor ¯\_(ツ)_/¯
 
-dwyer.bill@gmail.com
-
 ## Education
 
 Saint Norbert College  
