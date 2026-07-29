@@ -2,7 +2,14 @@
   "basics": {
     "name": "Bill Dwyer",
     "title": "Senior Android Engineer",
-    "summary": "Versatile engineer with experience across multiple technologies, specializing in Android applications for the past 10+ years. Driven by a passion for learning and problem-solving, I enjoy finding innovative ways of connecting users with technology!"
+    "summary": "Versatile engineer with experience across multiple technologies, specializing in Android applications for the past 10+ years. Driven by a passion for learning and problem-solving, I enjoy finding innovative ways of connecting users with technology!",
+    "misc": [
+      "Flexible attitude with little oversight required",
+      "Able to prioritize efforts to consistently meet goals and measure progress",
+      "Appreciates autonomy and getting things done",
+      "Strong problem solving and communication skills",
+      "Nerdy disposition with a sense of humor ¯\\_(ツ)_/¯"
+    ]
   },
   "education": [
     {
@@ -179,12 +186,5 @@
         "Developed libraries for interacting with scanning devices, designed and implemented an environment to be used with portable data terminals for inventory purposes"
       ]
     }
-  ],
-  "misc": [
-    "Flexible attitude with little oversight required",
-    "Able to prioritize efforts to consistently meet goals and measure progress",
-    "Appreciates autonomy and getting things done",
-    "Strong problem solving and communication skills",
-    "Nerdy disposition with a sense of humor ¯\\_(ツ)_/¯"
   ]
 }
