@@ -20,7 +20,7 @@ Majors: Computer Science and Philosophy
 
 ## Experience
 
-### Senior Android Engineer — eBay
+### Senior Android Engineer (MTS1) — eBay
 *09/2024 – 11/2026 | Portland, Oregon*
 
 - Delivered features from design to launch to grow seller sales and engage first-time users, as part of eBay's top strategic initiative
