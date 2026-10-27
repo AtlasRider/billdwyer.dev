@@ -1,6 +1,8 @@
 # Bill Dwyer
 
-Versatile engineer with experience across multiple technologies, specializing in Android applications for the past 10+ years. Driven by a passion for learning and problem-solving, I enjoy finding innovative ways of connecting users with technology!
+### Senior Android Engineer
+
+Versatile engineer with experience across multiple technologies, specializing in Android applications for the past 10+ years. Driven by a passion for learning and problem-solving. I enjoy finding innovative ways of connecting users with technology!
 
 - Flexible attitude with little oversight required
 - Able to prioritize efforts to consistently meet goals and measure progress
@@ -19,12 +21,13 @@ Majors: Computer Science and Philosophy
 ## Experience
 
 ### Senior Android Engineer — eBay
-*09/2024 – Present | Portland, Oregon*
+*09/2024 – 11/2026 | Portland, Oregon*
 
-- Deliver features from design to launch to grow seller sales and engage first-time users, as part of eBay's top strategic initiative
-- Serve as technical lead as the Android team doubles in size, onboarding and mentoring engineers, redesigning team processes, establishing POC roles, authoring ADRs, and driving architectural alignment across teams to reduce friction when implementing features spanning multiple codebases
-- Establish new techniques for agent-driven development on the team, building a shared context system later adopted by engineers outside the team, code quality tooling to maintain standards, and leading internal workshops on new approaches
-- Define technical designs for key features, review code across the team to ensure quality, and resolve critical production bugs, including issues in unfamiliar codebases
+- Delivered features from design to launch to grow seller sales and engage first-time users, as part of eBay's top strategic initiative
+- Defined technical designs for key features, reviewed code across the team to ensure quality, and resolved critical production bugs, including issues in unfamiliar codebases
+- Established new techniques for agent-driven development on the team, built a shared context system later adopted by engineers outside the team, and built code quality tooling to maintain standards during rapid team scaling
+- Authored ADRs, guided technical decisions, and collaborated with other teams to streamline feature implementation across multiple domains
+- Scaled Android engineering team as it grew 2x, served as a mentor for the intern program, and became the go-to technical leader that engineers looked to for guidance
 
 [Play Store](https://play.google.com/store/apps/details?id=com.ebay.mobile)
 
@@ -119,7 +122,6 @@ Majors: Computer Science and Philosophy
 - Created new services and systems with availability and scalability always in mind
 - Spearheaded efforts for complex problems with architecture designs and implementation
 - Mentored junior level developers
-- Helped design architecture for various projects
 
 ---
 
