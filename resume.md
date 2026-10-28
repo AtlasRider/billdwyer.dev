@@ -5,31 +5,41 @@
 Versatile engineer with experience across multiple technologies, specializing in Android applications for the past 10+ years. Driven by a passion for learning and problem-solving. I enjoy finding innovative ways of connecting users with technology!
 
 - Flexible attitude with little oversight required
-- Able to prioritize efforts to consistently meet goals and measure progress
-- Appreciates autonomy and getting things done
 - Strong problem solving and communication skills
+- Appreciates autonomy and getting things done
+- Prioritizes work to meet goals and track progress
 - Nerdy disposition with a sense of humor ¯\_(ツ)_/¯
 
 ## Education
 
 Saint Norbert College  
-*2000 - 2004 | Green Bay, Wisconsin*
+*2000 – 2004 | Green Bay, Wisconsin*
 
 Bachelor of Science  
 Majors: Computer Science and Philosophy
 
+## Skills
+
+- **Android:** Kotlin, Java, Jetpack Compose, MVVM, Coroutines, Flow, Jetpack Navigation, Modularization, Dagger, Retrofit, Room, SQLite, Gradle
+- **Testing & Delivery:** JUnit, Espresso, MockK, Jenkins, GitHub Actions
+- **Observability & Analytics:** OpenTelemetry, Crashlytics, Amplitude, New Relic
+- **Backend:** REST, GraphQL, Node.js, SQL
+- **AI-Driven Development:** Claude Code, Cline, spec-driven development, context engineering, agent verification loops, MCP, shared agent rules and memory, LLM feature integration
+- **Leadership:** Technical design, ADRs, cross-team collaboration, mentoring engineers and interns
+- **Patent:** Co-inventor, [US 11,393,197 B2](https://patents.google.com/patent/US11393197B2/en) — AR interaction measurement (Cvent, 2022)
+
 ## Experience
 
 ### Senior Android Engineer (MTS1) — eBay
-*09/2024 – 11/2026 | Portland, Oregon*
+*09/2024 – 10/2026 | Portland, Oregon*
 
 - Delivered features from design to launch to grow seller sales and engage first-time users, as part of eBay's top strategic initiative
 - Defined technical designs for key features, reviewed code across the team to ensure quality, and resolved critical production bugs, including issues in unfamiliar codebases
 - Established new techniques for agent-driven development on the team, built a shared context system later adopted by engineers outside the team, and built code quality tooling to maintain standards during rapid team scaling
 - Authored ADRs, guided technical decisions, and collaborated with other teams to streamline feature implementation across multiple domains
-- Scaled Android engineering team as it grew 2x, served as a mentor for the intern program, and became the go-to technical leader that engineers looked to for guidance
+- Onboarded and supported engineers as the Android team doubled in size, mentored interns, and became the go-to technical leader for guidance
 
-[Play Store](https://play.google.com/store/apps/details?id=com.ebay.mobile)
+[Play Store: eBay](https://play.google.com/store/apps/details?id=com.ebay.mobile)
 
 ---
 
@@ -37,14 +47,14 @@ Majors: Computer Science and Philosophy
 *11/2019 – 08/2024 | Portland, Oregon*
 
 - Led Android project to create the mobile experience of the New Relic web platform
-- Developed features to show observability data visualizations, alerts users of issues, a custom querying mechanism and frequently extending existing features
+- Developed observability data visualizations, issue alerting, and a custom querying mechanism, while continually extending existing features
 - Led effort to add ChatGPT-like feature and integrate company's AI solution
 - Migrated entire app (50+ screens) to use Kotlin and Jetpack Compose
 - Modernized architecture with updated patterns (ViewModels, Coroutines, Flows, Modularization, Navigation)
 - Established automated testing to surface quality concerns early
-- Mature engineering culture with CI pipeline, release automation, junior mentoring and steering team discussions in more productive directions
+- Matured engineering culture with CI pipeline, release automation, junior mentoring and steering team discussions in more productive directions
 
-[Play Store](https://play.google.com/store/apps/details?id=com.newrelic.rpm)
+[Play Store: New Relic](https://play.google.com/store/apps/details?id=com.newrelic.rpm)
 
 ---
 
@@ -57,9 +67,9 @@ Majors: Computer Science and Philosophy
 - Part of the initial team to establish new React Native app to replace legacy app
 - Created component library using Storybook to align with UX design and quickly test
 - Mentored new team members unfamiliar with tech stack and served as Android expert
-- Led company hosted React Native meetups and presented on various subjects
+- Led company-hosted React Native meetups and presented on various subjects
 
-[Play Store](https://play.google.com/store/apps/details?id=com.cvent.mobile.eventapp)
+[Play Store: Cvent Events](https://play.google.com/store/apps/details?id=com.cvent.mobile.eventapp)
 
 ---
 
@@ -68,10 +78,10 @@ Majors: Computer Science and Philosophy
 
 - Created DAT Load Board for Truckers Android app to replace existing web app ("the Uber for Truckers")
 - Led feature development from project beginning to the initial launch
-- Established new REST APIs on NodeJS backend
+- Established new REST APIs on Node.js backend
 - Feature development and refactoring of existing DAT Trucker Android app
 
-[Play Store: DAT Load Board for Truckers](https://play.google.com/store/apps/details?id=com.dat.fm.carrier)
+[Play Store: DAT Load Board for Truckers](https://play.google.com/store/apps/details?id=com.dat.fm.carrier)  
 [Play Store: DAT Trucker](https://play.google.com/store/apps/details?id=com.tcore.android.LoadBoard)
 
 ---
@@ -80,8 +90,8 @@ Majors: Computer Science and Philosophy
 *09/2013 – 03/2016 | Portland, Oregon*
 
 - Lead engineer of team to deliver company's first Android and iOS app
-- Designed cross platform libraries that are shared between apps
-- Use of extensive automated tests, including functional UI testing
+- Designed cross-platform libraries that are shared between apps
+- Used extensive automated tests, including functional UI testing
 - Full stack feature development in our core systems app using Angular, C#, ServiceStack, and Mongo
 
 ---
@@ -90,7 +100,7 @@ Majors: Computer Science and Philosophy
 *08/2012 – 09/2013 | Portland, Oregon*
 
 - Led agile team, designed and developed an ASP.NET MVC server-side infrastructure in C# for a PhoneGap iOS app using jQuery Mobile to connect users with job opportunities over the country
-- Created responsive and parallaxing sites prior to libraries becoming available, using the latest HTML5 techniques including Javascript, jQuery, CSS3, and AJAX
+- Created responsive and parallaxing sites prior to libraries becoming available, using the latest HTML5 techniques including JavaScript, jQuery, CSS3, and AJAX
 - Developed new features and maintained existing client websites across many different technology stacks
 
 ---
@@ -99,8 +109,8 @@ Majors: Computer Science and Philosophy
 *03/2011 – 05/2012 | Philadelphia, Pennsylvania*
 
 - Built custom .NET web applications to fill in functionality gaps at a major law practice
-- Implemented Sharepoint 2010 installation for firm wide use
-- Databases improvements that surveyed the firm's experience to facilitate pitches for prospective clients
+- Implemented SharePoint 2010 installation for firmwide use
+- Database improvements that surveyed the firm's experience to facilitate pitches for prospective clients
 
 ---
 
@@ -109,8 +119,8 @@ Majors: Computer Science and Philosophy
 
 - Traveled solo overland on my motorcycle for eight months and 20,000 miles from Arizona to Argentina
 - Blogging my adventures by motorcycle around the world with a healthy audience
-- Gained exposure to Wordpress as a CMS with custom coded solutions
-- Self published a book chronicling the trip
+- Gained exposure to WordPress as a CMS with custom coded solutions
+- Self-published a book chronicling the trip
 
 ---
 
@@ -148,6 +158,6 @@ Majors: Computer Science and Philosophy
 *07/2003 – 12/2004 | Green Bay, Wisconsin*
 
 - Developed a C# Windows Form application to transfer lab data
-- Project lead during analysis, development, and implementation of a .NET based inventory and customer relationship management for Land O' Lakes, a nation-wide dairy producer and distributor
+- Project lead during analysis, development, and implementation of a .NET based inventory and customer relationship management for Land O'Lakes, a nationwide dairy producer and distributor
 - Technical lead during development of a .NET solution for an inventory system to track yields of production and location of goods for White Clover Dairy
 - Developed libraries for interacting with scanning devices, designed and implemented an environment to be used with portable data terminals for inventory purposes

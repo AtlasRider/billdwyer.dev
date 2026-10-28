@@ -85,7 +85,7 @@
 
   .skills-grid {
     display: grid;
-    grid-template-columns: 120px 1fr;
+    grid-template-columns: 180px 1fr;
     row-gap: 8px;
     column-gap: 12px;
     font-size: 14px;
@@ -95,6 +95,10 @@
     color: var(--muted);
   }
   .skills-grid dd { color: var(--text); }
+  @media (max-width: 600px) {
+    .skills-grid { grid-template-columns: 1fr; row-gap: 2px; }
+    .skills-grid dd { margin-bottom: 8px; }
+  }
 
   .job { margin-bottom: 26px; }
   .job:last-child { margin-bottom: 0; }
@@ -141,7 +145,7 @@
     left: 0;
     color: var(--muted);
   }
-  ul.bullets a { color: var(--text); }
+  ul.bullets a, .skills-grid a { color: var(--text); }
 
   .intro {
     font-size: 14.5px;
@@ -265,9 +269,9 @@
   <section>
     <ul class="misc-list">
       <li>Flexible attitude with little oversight required</li>
-      <li>Able to prioritize efforts to consistently meet goals and measure progress</li>
-      <li>Appreciates autonomy and getting things done</li>
       <li>Strong problem solving and communication skills</li>
+      <li>Appreciates autonomy and getting things done</li>
+      <li>Prioritizes work to meet goals and track progress</li>
       <li>Nerdy disposition with a sense of humor ¯\_(ツ)_/¯</li>
     </ul>
   </section>
@@ -284,12 +288,32 @@
   </section>
 
   <section>
+    <h2>Skills</h2>
+    <dl class="skills-grid">
+      <dt>Android</dt>
+      <dd>Kotlin, Java, Jetpack Compose, MVVM, Coroutines, Flow, Jetpack Navigation, Modularization, Dagger, Retrofit, Room, SQLite, Gradle</dd>
+      <dt>Testing &amp; Delivery</dt>
+      <dd>JUnit, Espresso, MockK, Jenkins, GitHub Actions</dd>
+      <dt>Observability &amp; Analytics</dt>
+      <dd>OpenTelemetry, Crashlytics, Amplitude, New Relic</dd>
+      <dt>Backend</dt>
+      <dd>REST, GraphQL, Node.js, SQL</dd>
+      <dt>AI-Driven Development</dt>
+      <dd>Claude Code, Cline, spec-driven development, context engineering, agent verification loops, MCP, shared agent rules and memory, LLM feature integration</dd>
+      <dt>Leadership</dt>
+      <dd>Technical design, ADRs, cross-team collaboration, mentoring engineers and interns</dd>
+      <dt>Patent</dt>
+      <dd>Co-inventor, <a href="https://patents.google.com/patent/US11393197B2/en">US 11,393,197 B2</a> — AR interaction measurement (Cvent, 2022)</dd>
+    </dl>
+  </section>
+
+  <section>
     <h2>Experience</h2>
 
     <div class="job">
       <div class="job-head">
         <span class="job-role">Senior Android Engineer (MTS1) — eBay</span>
-        <span class="job-meta">09/2024 – 11/2026</span>
+        <span class="job-meta">09/2024 – 10/2026</span>
       </div>
       <div class="job-company">Portland, Oregon</div>
       <ul class="bullets">
@@ -297,7 +321,7 @@
         <li>Defined technical designs for key features, reviewed code across the team to ensure quality, and resolved critical production bugs, including issues in unfamiliar codebases</li>
         <li>Established new techniques for agent-driven development on the team, built a shared context system later adopted by engineers outside the team, and built code quality tooling to maintain standards during rapid team scaling</li>
         <li>Authored ADRs, guided technical decisions, and collaborated with other teams to streamline feature implementation across multiple domains</li>
-        <li>Scaled Android engineering team as it grew 2x, served as a mentor for the intern program, and became the go-to technical leader that engineers looked to for guidance</li>
+        <li>Onboarded and supported engineers as the Android team doubled in size, mentored interns, and became the go-to technical leader for guidance</li>
         <li>Play Store: <a href="https://play.google.com/store/apps/details?id=com.ebay.mobile">eBay</a></li>
       </ul>
     </div>
@@ -310,12 +334,12 @@
       <div class="job-company">Portland, Oregon</div>
       <ul class="bullets">
         <li>Led Android project to create the mobile experience of the New Relic web platform</li>
-        <li>Developed features to show observability data visualizations, alerts users of issues, a custom querying mechanism and frequently extending existing features</li>
+        <li>Developed observability data visualizations, issue alerting, and a custom querying mechanism, while continually extending existing features</li>
         <li>Led effort to add ChatGPT-like feature and integrate company's AI solution</li>
         <li>Migrated entire app (50+ screens) to use Kotlin and Jetpack Compose</li>
         <li>Modernized architecture with updated patterns (ViewModels, Coroutines, Flows, Modularization, Navigation)</li>
         <li>Established automated testing to surface quality concerns early</li>
-        <li>Mature engineering culture with CI pipeline, release automation, junior mentoring and steering team discussions in more productive directions</li>
+        <li>Matured engineering culture with CI pipeline, release automation, junior mentoring and steering team discussions in more productive directions</li>
         <li>Play Store: <a href="https://play.google.com/store/apps/details?id=com.newrelic.rpm">New Relic</a></li>
       </ul>
     </div>
@@ -333,7 +357,7 @@
         <li>Part of the initial team to establish new React Native app to replace legacy app</li>
         <li>Created component library using Storybook to align with UX design and quickly test</li>
         <li>Mentored new team members unfamiliar with tech stack and served as Android expert</li>
-        <li>Led company hosted React Native meetups and presented on various subjects</li>
+        <li>Led company-hosted React Native meetups and presented on various subjects</li>
         <li>Play Store: <a href="https://play.google.com/store/apps/details?id=com.cvent.mobile.eventapp">Cvent Events</a></li>
       </ul>
     </div>
@@ -347,7 +371,7 @@
       <ul class="bullets">
         <li>Created DAT Load Board for Truckers Android app to replace existing web app ("the Uber for Truckers")</li>
         <li>Led feature development from project beginning to the initial launch</li>
-        <li>Established new REST APIs on NodeJS backend</li>
+        <li>Established new REST APIs on Node.js backend</li>
         <li>Feature development and refactoring of existing DAT Trucker Android app</li>
         <li>Play Store: <a href="https://play.google.com/store/apps/details?id=com.dat.fm.carrier">DAT Load Board for Truckers</a></li>
         <li>Play Store: <a href="https://play.google.com/store/apps/details?id=com.tcore.android.LoadBoard">DAT Trucker</a></li>
@@ -362,8 +386,8 @@
       <div class="job-company">Portland, Oregon</div>
       <ul class="bullets">
         <li>Lead engineer of team to deliver company's first Android and iOS app</li>
-        <li>Designed cross platform libraries that are shared between apps</li>
-        <li>Use of extensive automated tests, including functional UI testing</li>
+        <li>Designed cross-platform libraries that are shared between apps</li>
+        <li>Used extensive automated tests, including functional UI testing</li>
         <li>Full stack feature development in our core systems app using Angular, C#, ServiceStack, and Mongo</li>
       </ul>
     </div>
@@ -376,7 +400,7 @@
       <div class="job-company">Portland, Oregon</div>
       <ul class="bullets">
         <li>Led agile team, designed and developed an ASP.NET MVC server-side infrastructure in C# for a PhoneGap iOS app using jQuery Mobile to connect users with job opportunities over the country</li>
-        <li>Created responsive and parallaxing sites prior to libraries becoming available, using the latest HTML5 techniques including Javascript, jQuery, CSS3, and AJAX</li>
+        <li>Created responsive and parallaxing sites prior to libraries becoming available, using the latest HTML5 techniques including JavaScript, jQuery, CSS3, and AJAX</li>
         <li>Developed new features and maintained existing client websites across many different technology stacks</li>
       </ul>
     </div>
@@ -389,7 +413,7 @@
       <div class="job-company">Philadelphia, Pennsylvania</div>
       <ul class="bullets">
         <li>Built custom .NET web applications to fill in functionality gaps at a major law practice</li>
-        <li>Implemented Sharepoint 2010 installation for firm wide use</li>
+        <li>Implemented SharePoint 2010 installation for firmwide use</li>
         <li>Database improvements that surveyed the firm's experience to facilitate pitches for prospective clients</li>
       </ul>
     </div>
@@ -403,8 +427,8 @@
       <ul class="bullets">
         <li>Traveled solo overland on my motorcycle for eight months and 20,000 miles from Arizona to Argentina</li>
         <li>Blogging my adventures by motorcycle around the world with a healthy audience</li>
-        <li>Gained exposure to Wordpress as a CMS with custom coded solutions</li>
-        <li>Self published a book chronicling the trip</li>
+        <li>Gained exposure to WordPress as a CMS with custom coded solutions</li>
+        <li>Self-published a book chronicling the trip</li>
       </ul>
     </div>
 
@@ -458,7 +482,7 @@
       <div class="job-company">Green Bay, Wisconsin</div>
       <ul class="bullets">
         <li>Developed a C# Windows Form application to transfer lab data</li>
-        <li>Project lead during analysis, development, and implementation of a .NET based inventory and customer relationship management for Land O' Lakes, a nation-wide dairy producer and distributor</li>
+        <li>Project lead during analysis, development, and implementation of a .NET based inventory and customer relationship management for Land O'Lakes, a nationwide dairy producer and distributor</li>
         <li>Technical lead during development of a .NET solution for an inventory system to track yields of production and location of goods for White Clover Dairy</li>
         <li>Developed libraries for interacting with scanning devices, designed and implemented an environment to be used with portable data terminals for inventory purposes</li>
       </ul>
